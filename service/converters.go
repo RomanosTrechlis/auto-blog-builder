@@ -4,7 +4,7 @@ import (
 	"github.com/RomanosTrechlis/blog-generator/config"
 )
 
-func MapSiteInformationToRequest(siteInfo *config.SiteInformation) (req *Request) {
+func MapSiteInformationToRequest(siteInfo *config.SiteInformation) (req *GenerateRequest) {
 	staticPages := make([]*StaticPages, 0)
 	for _, s := range siteInfo.StaticPages {
 		sp := &StaticPages{
@@ -14,7 +14,7 @@ func MapSiteInformationToRequest(siteInfo *config.SiteInformation) (req *Request
 		}
 		staticPages = append(staticPages, sp)
 	}
-	req = &Request{
+	req = &GenerateRequest{
 		Author:            siteInfo.Author,
 		BlogURL:           siteInfo.BlogURL,
 		BlogLanguage:      siteInfo.BlogLanguage,
@@ -38,7 +38,7 @@ func MapSiteInformationToRequest(siteInfo *config.SiteInformation) (req *Request
 	return req
 }
 
-func MapRequestToSiteInformation(req *Request) (siteInfo config.SiteInformation) {
+func MapRequestToSiteInformation(req *GenerateRequest) (siteInfo config.SiteInformation) {
 	staticPages := make([]config.StaticPage, 0)
 	for _, s := range req.StaticPages {
 		sp := config.StaticPage{
