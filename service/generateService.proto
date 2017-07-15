@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package generate;
+package service;
 
 service Generator {
     rpc Generate (GenerateRequest) returns (GenerateResponse){}
