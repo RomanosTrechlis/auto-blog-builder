@@ -2,8 +2,16 @@ syntax = "proto3";
 
 package service;
 
-import "github.com/RomanosTrechlis/auto-blog-builder/service/common.proto";
-
 service Fetcher {
-    rpc Fetch (Request) returns (Response){}
+    rpc Fetch (FetchRequest) returns (FetchResponse){}
+}
+
+message FetchRequest {
+    string dsType = 1;
+    string dsRepository = 2;
+    string dsDestFolder = 3;
+}
+
+message FetchResponse {
+    string Res = 1;
 }

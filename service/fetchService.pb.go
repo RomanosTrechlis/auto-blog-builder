@@ -8,12 +8,8 @@ It is generated from these files:
 	fetchService.proto
 
 It has these top-level messages:
-	Request
-	StaticPages
-	Theme
-	DataSource
-	Upload
-	Response
+	FetchRequest
+	FetchResponse
 */
 package service
 
@@ -37,248 +33,48 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-type Request struct {
-	Author            string         `protobuf:"bytes,1,opt,name=Author" json:"Author,omitempty"`
-	BlogURL           string         `protobuf:"bytes,2,opt,name=BlogURL" json:"BlogURL,omitempty"`
-	BlogLanguage      string         `protobuf:"bytes,3,opt,name=BlogLanguage" json:"BlogLanguage,omitempty"`
-	BlogDescription   string         `protobuf:"bytes,4,opt,name=BlogDescription" json:"BlogDescription,omitempty"`
-	DateFormat        string         `protobuf:"bytes,5,opt,name=DateFormat" json:"DateFormat,omitempty"`
-	Theme             *Theme         `protobuf:"bytes,12,opt,name=Theme" json:"Theme,omitempty"`
-	ThemeFolder       string         `protobuf:"bytes,6,opt,name=ThemeFolder" json:"ThemeFolder,omitempty"`
-	BlogTitle         string         `protobuf:"bytes,7,opt,name=BlogTitle" json:"BlogTitle,omitempty"`
-	NumPostsFrontPage int64          `protobuf:"varint,8,opt,name=NumPostsFrontPage" json:"NumPostsFrontPage,omitempty"`
-	DataSource        *DataSource    `protobuf:"bytes,13,opt,name=DataSource" json:"DataSource,omitempty"`
-	Upload            *Upload        `protobuf:"bytes,14,opt,name=Upload" json:"Upload,omitempty"`
-	TempFolder        string         `protobuf:"bytes,9,opt,name=TempFolder" json:"TempFolder,omitempty"`
-	DestFolder        string         `protobuf:"bytes,10,opt,name=DestFolder" json:"DestFolder,omitempty"`
-	StaticPages       []*StaticPages `protobuf:"bytes,11,rep,name=StaticPages" json:"StaticPages,omitempty"`
+type FetchRequest struct {
+	DsType       string `protobuf:"bytes,1,opt,name=dsType" json:"dsType,omitempty"`
+	DsRepository string `protobuf:"bytes,2,opt,name=dsRepository" json:"dsRepository,omitempty"`
+	DsDestFolder string `protobuf:"bytes,3,opt,name=dsDestFolder" json:"dsDestFolder,omitempty"`
 }
 
-func (m *Request) Reset()                    { *m = Request{} }
-func (m *Request) String() string            { return proto.CompactTextString(m) }
-func (*Request) ProtoMessage()               {}
-func (*Request) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (m *FetchRequest) Reset()                    { *m = FetchRequest{} }
+func (m *FetchRequest) String() string            { return proto.CompactTextString(m) }
+func (*FetchRequest) ProtoMessage()               {}
+func (*FetchRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
-func (m *Request) GetAuthor() string {
+func (m *FetchRequest) GetDsType() string {
 	if m != nil {
-		return m.Author
+		return m.DsType
 	}
 	return ""
 }
 
-func (m *Request) GetBlogURL() string {
+func (m *FetchRequest) GetDsRepository() string {
 	if m != nil {
-		return m.BlogURL
+		return m.DsRepository
 	}
 	return ""
 }
 
-func (m *Request) GetBlogLanguage() string {
+func (m *FetchRequest) GetDsDestFolder() string {
 	if m != nil {
-		return m.BlogLanguage
+		return m.DsDestFolder
 	}
 	return ""
 }
 
-func (m *Request) GetBlogDescription() string {
-	if m != nil {
-		return m.BlogDescription
-	}
-	return ""
-}
-
-func (m *Request) GetDateFormat() string {
-	if m != nil {
-		return m.DateFormat
-	}
-	return ""
-}
-
-func (m *Request) GetTheme() *Theme {
-	if m != nil {
-		return m.Theme
-	}
-	return nil
-}
-
-func (m *Request) GetThemeFolder() string {
-	if m != nil {
-		return m.ThemeFolder
-	}
-	return ""
-}
-
-func (m *Request) GetBlogTitle() string {
-	if m != nil {
-		return m.BlogTitle
-	}
-	return ""
-}
-
-func (m *Request) GetNumPostsFrontPage() int64 {
-	if m != nil {
-		return m.NumPostsFrontPage
-	}
-	return 0
-}
-
-func (m *Request) GetDataSource() *DataSource {
-	if m != nil {
-		return m.DataSource
-	}
-	return nil
-}
-
-func (m *Request) GetUpload() *Upload {
-	if m != nil {
-		return m.Upload
-	}
-	return nil
-}
-
-func (m *Request) GetTempFolder() string {
-	if m != nil {
-		return m.TempFolder
-	}
-	return ""
-}
-
-func (m *Request) GetDestFolder() string {
-	if m != nil {
-		return m.DestFolder
-	}
-	return ""
-}
-
-func (m *Request) GetStaticPages() []*StaticPages {
-	if m != nil {
-		return m.StaticPages
-	}
-	return nil
-}
-
-type StaticPages struct {
-	File       string `protobuf:"bytes,1,opt,name=File" json:"File,omitempty"`
-	To         string `protobuf:"bytes,2,opt,name=To" json:"To,omitempty"`
-	IsTemplate bool   `protobuf:"varint,3,opt,name=IsTemplate" json:"IsTemplate,omitempty"`
-}
-
-func (m *StaticPages) Reset()                    { *m = StaticPages{} }
-func (m *StaticPages) String() string            { return proto.CompactTextString(m) }
-func (*StaticPages) ProtoMessage()               {}
-func (*StaticPages) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
-
-func (m *StaticPages) GetFile() string {
-	if m != nil {
-		return m.File
-	}
-	return ""
-}
-
-func (m *StaticPages) GetTo() string {
-	if m != nil {
-		return m.To
-	}
-	return ""
-}
-
-func (m *StaticPages) GetIsTemplate() bool {
-	if m != nil {
-		return m.IsTemplate
-	}
-	return false
-}
-
-type Theme struct {
-	Repository string `protobuf:"bytes,1,opt,name=Repository" json:"Repository,omitempty"`
-	Type       string `protobuf:"bytes,2,opt,name=Type" json:"Type,omitempty"`
-}
-
-func (m *Theme) Reset()                    { *m = Theme{} }
-func (m *Theme) String() string            { return proto.CompactTextString(m) }
-func (*Theme) ProtoMessage()               {}
-func (*Theme) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
-
-func (m *Theme) GetRepository() string {
-	if m != nil {
-		return m.Repository
-	}
-	return ""
-}
-
-func (m *Theme) GetType() string {
-	if m != nil {
-		return m.Type
-	}
-	return ""
-}
-
-type DataSource struct {
-	Repository string `protobuf:"bytes,1,opt,name=Repository" json:"Repository,omitempty"`
-	Type       string `protobuf:"bytes,2,opt,name=Type" json:"Type,omitempty"`
-}
-
-func (m *DataSource) Reset()                    { *m = DataSource{} }
-func (m *DataSource) String() string            { return proto.CompactTextString(m) }
-func (*DataSource) ProtoMessage()               {}
-func (*DataSource) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
-
-func (m *DataSource) GetRepository() string {
-	if m != nil {
-		return m.Repository
-	}
-	return ""
-}
-
-func (m *DataSource) GetType() string {
-	if m != nil {
-		return m.Type
-	}
-	return ""
-}
-
-type Upload struct {
-	URL      string `protobuf:"bytes,1,opt,name=URL" json:"URL,omitempty"`
-	Username string `protobuf:"bytes,2,opt,name=Username" json:"Username,omitempty"`
-	Password string `protobuf:"bytes,3,opt,name=Password" json:"Password,omitempty"`
-}
-
-func (m *Upload) Reset()                    { *m = Upload{} }
-func (m *Upload) String() string            { return proto.CompactTextString(m) }
-func (*Upload) ProtoMessage()               {}
-func (*Upload) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
-
-func (m *Upload) GetURL() string {
-	if m != nil {
-		return m.URL
-	}
-	return ""
-}
-
-func (m *Upload) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-func (m *Upload) GetPassword() string {
-	if m != nil {
-		return m.Password
-	}
-	return ""
-}
-
-type Response struct {
+type FetchResponse struct {
 	Res string `protobuf:"bytes,1,opt,name=Res" json:"Res,omitempty"`
 }
 
-func (m *Response) Reset()                    { *m = Response{} }
-func (m *Response) String() string            { return proto.CompactTextString(m) }
-func (*Response) ProtoMessage()               {}
-func (*Response) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (m *FetchResponse) Reset()                    { *m = FetchResponse{} }
+func (m *FetchResponse) String() string            { return proto.CompactTextString(m) }
+func (*FetchResponse) ProtoMessage()               {}
+func (*FetchResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
-func (m *Response) GetRes() string {
+func (m *FetchResponse) GetRes() string {
 	if m != nil {
 		return m.Res
 	}
@@ -286,12 +82,8 @@ func (m *Response) GetRes() string {
 }
 
 func init() {
-	proto.RegisterType((*Request)(nil), "service.Request")
-	proto.RegisterType((*StaticPages)(nil), "service.StaticPages")
-	proto.RegisterType((*Theme)(nil), "service.Theme")
-	proto.RegisterType((*DataSource)(nil), "service.DataSource")
-	proto.RegisterType((*Upload)(nil), "service.Upload")
-	proto.RegisterType((*Response)(nil), "service.Response")
+	proto.RegisterType((*FetchRequest)(nil), "service.FetchRequest")
+	proto.RegisterType((*FetchResponse)(nil), "service.FetchResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -305,7 +97,7 @@ const _ = grpc.SupportPackageIsVersion4
 // Client API for Fetcher service
 
 type FetcherClient interface {
-	Fetch(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+	Fetch(ctx context.Context, in *FetchRequest, opts ...grpc.CallOption) (*FetchResponse, error)
 }
 
 type fetcherClient struct {
@@ -316,8 +108,8 @@ func NewFetcherClient(cc *grpc.ClientConn) FetcherClient {
 	return &fetcherClient{cc}
 }
 
-func (c *fetcherClient) Fetch(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *fetcherClient) Fetch(ctx context.Context, in *FetchRequest, opts ...grpc.CallOption) (*FetchResponse, error) {
+	out := new(FetchResponse)
 	err := grpc.Invoke(ctx, "/service.Fetcher/Fetch", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
@@ -328,7 +120,7 @@ func (c *fetcherClient) Fetch(ctx context.Context, in *Request, opts ...grpc.Cal
 // Server API for Fetcher service
 
 type FetcherServer interface {
-	Fetch(context.Context, *Request) (*Response, error)
+	Fetch(context.Context, *FetchRequest) (*FetchResponse, error)
 }
 
 func RegisterFetcherServer(s *grpc.Server, srv FetcherServer) {
@@ -336,7 +128,7 @@ func RegisterFetcherServer(s *grpc.Server, srv FetcherServer) {
 }
 
 func _Fetcher_Fetch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
+	in := new(FetchRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -348,7 +140,7 @@ func _Fetcher_Fetch_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: "/service.Fetcher/Fetch",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FetcherServer).Fetch(ctx, req.(*Request))
+		return srv.(FetcherServer).Fetch(ctx, req.(*FetchRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -369,35 +161,17 @@ var _Fetcher_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("fetchService.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 476 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0xdf, 0x8b, 0xd4, 0x30,
-	0x10, 0x76, 0x6f, 0x7f, 0x4f, 0xcf, 0xbd, 0xbb, 0x51, 0x24, 0x1c, 0x87, 0x94, 0x22, 0xd8, 0x07,
-	0xd9, 0x87, 0x3d, 0x10, 0xc4, 0x17, 0x95, 0xa3, 0x20, 0x1c, 0xb2, 0x66, 0xbb, 0x7f, 0x40, 0xec,
-	0x8e, 0xbb, 0x85, 0xb6, 0xa9, 0x49, 0xaa, 0xdc, 0xdf, 0xe1, 0x3f, 0x2c, 0x49, 0xb3, 0xdd, 0x9e,
-	0xbe, 0xf9, 0x36, 0xf3, 0x7d, 0x33, 0x5f, 0x26, 0x5f, 0x26, 0x80, 0xdf, 0xc9, 0x64, 0x87, 0x0d,
-	0xa9, 0x9f, 0x79, 0x46, 0xcb, 0x5a, 0x49, 0x23, 0x71, 0xaa, 0xdb, 0x34, 0xfa, 0x3d, 0x82, 0x29,
-	0xa7, 0x1f, 0x0d, 0x69, 0x83, 0x2f, 0x60, 0xf2, 0xb1, 0x31, 0x07, 0xa9, 0xd8, 0x20, 0x1c, 0xc4,
-	0x73, 0xee, 0x33, 0x64, 0x30, 0xfd, 0x54, 0xc8, 0xfd, 0x96, 0xdf, 0xb3, 0x33, 0x47, 0x1c, 0x53,
-	0x8c, 0xe0, 0xdc, 0x86, 0xf7, 0xa2, 0xda, 0x37, 0x62, 0x4f, 0x6c, 0xe8, 0xe8, 0x47, 0x18, 0xc6,
-	0x70, 0x61, 0xf3, 0x3b, 0xd2, 0x99, 0xca, 0x6b, 0x93, 0xcb, 0x8a, 0x8d, 0x5c, 0xd9, 0xdf, 0x30,
-	0xbe, 0x04, 0xb8, 0x13, 0x86, 0x12, 0xa9, 0x4a, 0x61, 0xd8, 0xd8, 0x15, 0xf5, 0x10, 0x7c, 0x05,
-	0xe3, 0xf4, 0x40, 0x25, 0xb1, 0xf3, 0x70, 0x10, 0x07, 0xab, 0xc5, 0xd2, 0x5f, 0x62, 0xe9, 0x50,
-	0xde, 0x92, 0x18, 0x42, 0xe0, 0x82, 0x44, 0x16, 0x3b, 0x52, 0x6c, 0xe2, 0x64, 0xfa, 0x10, 0xde,
-	0xc0, 0xdc, 0x1e, 0x9d, 0xe6, 0xa6, 0x20, 0x36, 0x75, 0xfc, 0x09, 0xc0, 0x37, 0x70, 0xf5, 0xa5,
-	0x29, 0xd7, 0x52, 0x1b, 0x9d, 0x28, 0x59, 0x99, 0xb5, 0xbd, 0xd8, 0x2c, 0x1c, 0xc4, 0x43, 0xfe,
-	0x2f, 0x81, 0xb7, 0x6e, 0x66, 0xb1, 0x91, 0x8d, 0xca, 0x88, 0x3d, 0x75, 0x83, 0x3d, 0xeb, 0x06,
-	0x3b, 0x51, 0xbc, 0x57, 0x86, 0xaf, 0x61, 0xb2, 0xad, 0x0b, 0x29, 0x76, 0x6c, 0xe1, 0x1a, 0x2e,
-	0xba, 0x86, 0x16, 0xe6, 0x9e, 0xb6, 0x8e, 0xa4, 0x54, 0xd6, 0xfe, 0x2a, 0xf3, 0xd6, 0x91, 0x13,
-	0xe2, 0x1c, 0x23, 0x6d, 0x3c, 0x0f, 0xde, 0xb1, 0x0e, 0xc1, 0xb7, 0x10, 0x6c, 0x8c, 0x30, 0x79,
-	0x66, 0x67, 0xd5, 0x2c, 0x08, 0x87, 0x71, 0xb0, 0x7a, 0xde, 0x9d, 0xd6, 0xe3, 0x78, 0xbf, 0x30,
-	0xfa, 0xfa, 0xa8, 0x0f, 0x11, 0x46, 0x49, 0x5e, 0x90, 0x5f, 0x0b, 0x17, 0xe3, 0x02, 0xce, 0x52,
-	0xe9, 0xf7, 0xe1, 0x2c, 0x95, 0x76, 0x94, 0xcf, 0xda, 0x8e, 0x56, 0x08, 0xd3, 0x2e, 0xc2, 0x8c,
-	0xf7, 0x90, 0xe8, 0xbd, 0x7f, 0x3c, 0x5b, 0xc8, 0xa9, 0x96, 0x3a, 0x37, 0x52, 0x3d, 0x78, 0xc9,
-	0x1e, 0x62, 0x0f, 0x4b, 0x1f, 0x6a, 0xf2, 0xd2, 0x2e, 0x8e, 0x3e, 0xf4, 0x5d, 0xfe, 0x2f, 0x05,
-	0x7e, 0xb4, 0x1c, 0x2f, 0x61, 0x68, 0x37, 0xb9, 0x6d, 0xb3, 0x21, 0x5e, 0xc3, 0x6c, 0xab, 0x49,
-	0x55, 0xa2, 0x3c, 0xf6, 0x74, 0xb9, 0xe5, 0xd6, 0x42, 0xeb, 0x5f, 0x52, 0xed, 0xfc, 0x76, 0x77,
-	0x79, 0x74, 0x03, 0x33, 0x4e, 0xba, 0x96, 0x95, 0x26, 0xab, 0xca, 0x49, 0x1f, 0x55, 0x39, 0xe9,
-	0xd5, 0x3b, 0x98, 0x26, 0xf6, 0xe3, 0x91, 0xc2, 0x25, 0x8c, 0x5d, 0x88, 0x97, 0x9d, 0xf5, 0xfe,
-	0xcf, 0x5d, 0x5f, 0xf5, 0x90, 0x56, 0x2a, 0x7a, 0xf2, 0x6d, 0xe2, 0x3e, 0xe9, 0xed, 0x9f, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0x00, 0xba, 0xd9, 0x31, 0xba, 0x03, 0x00, 0x00,
+	// 180 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x4f, 0xcb, 0xaa, 0xc2, 0x30,
+	0x10, 0xbd, 0xbd, 0xc5, 0x16, 0x87, 0x0a, 0x32, 0x60, 0x29, 0xae, 0x34, 0x2b, 0x57, 0x5d, 0xe8,
+	0xc6, 0xbd, 0xd2, 0x0f, 0x88, 0x7e, 0x81, 0xed, 0x88, 0x05, 0x69, 0x62, 0x26, 0x0a, 0xfd, 0x7b,
+	0x69, 0x12, 0xf1, 0xb1, 0x3b, 0x2f, 0xe6, 0x9c, 0x01, 0x3c, 0x93, 0xad, 0x2f, 0x07, 0x32, 0x8f,
+	0xb6, 0xa6, 0x52, 0x1b, 0x65, 0x15, 0xa6, 0xec, 0xa9, 0xe8, 0x20, 0xab, 0x06, 0x5b, 0xd2, 0xed,
+	0x4e, 0x6c, 0x31, 0x87, 0xa4, 0xe1, 0x63, 0xaf, 0xa9, 0x88, 0x16, 0xd1, 0x6a, 0x2c, 0x03, 0x43,
+	0x01, 0x59, 0xc3, 0x92, 0xb4, 0xe2, 0xd6, 0x2a, 0xd3, 0x17, 0xff, 0xce, 0xfd, 0xd2, 0x7c, 0x66,
+	0x4f, 0x6c, 0x2b, 0x75, 0x6d, 0xc8, 0x14, 0xf1, 0x2b, 0xf3, 0xd6, 0xc4, 0x12, 0x26, 0xa1, 0x8f,
+	0xb5, 0xea, 0x98, 0x70, 0x0a, 0xb1, 0x24, 0x0e, 0x6d, 0x03, 0x5c, 0xef, 0x20, 0x75, 0x11, 0x32,
+	0xb8, 0x85, 0x91, 0x83, 0x38, 0x2b, 0xc3, 0xe0, 0xf2, 0x73, 0xed, 0x3c, 0xff, 0x95, 0xfd, 0x51,
+	0xf1, 0x77, 0x4a, 0xdc, 0x9f, 0x9b, 0x67, 0x00, 0x00, 0x00, 0xff, 0xff, 0x61, 0x86, 0xd2, 0x1d,
+	0xfd, 0x00, 0x00, 0x00,
 }

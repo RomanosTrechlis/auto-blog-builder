@@ -1,8 +1,12 @@
 syntax = "proto3";
 
-package service;
+package generate;
 
-message Request {
+service Generator {
+    rpc Generate (GenerateRequest) returns (GenerateResponse){}
+}
+
+message GenerateRequest {
     string Author = 1;
     string BlogURL = 2;
     string BlogLanguage = 3;
@@ -41,6 +45,6 @@ message Upload {
     string Password = 3;
 }
 
-message Response {
+message GenerateResponse {
     string Res = 1;
 }
