@@ -6,10 +6,17 @@ Package service is a generated protocol buffer package.
 
 It is generated from these files:
 	fetchService.proto
+	generateService.proto
 
 It has these top-level messages:
 	FetchRequest
 	FetchResponse
+	GenerateRequest
+	StaticPages
+	Theme
+	DataSource
+	Upload
+	GenerateResponse
 */
 package service
 
