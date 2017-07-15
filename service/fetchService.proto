@@ -2,49 +2,8 @@ syntax = "proto3";
 
 package service;
 
+import "github.com/RomanosTrechlis/auto-blog-builder/service/common.proto";
+
 service Fetcher {
     rpc Fetch (Request) returns (Response){}
-}
-
-message Request {
-    string Author = 1;
-    string BlogURL = 2;
-    string BlogLanguage = 3;
-    string BlogDescription = 4;
-    string DateFormat = 5;
-    Theme Theme = 12;
-    string ThemeFolder = 6;
-    string BlogTitle = 7;
-    int64 NumPostsFrontPage = 8;
-    DataSource DataSource = 13;
-    Upload Upload = 14;
-    string TempFolder = 9;
-    string DestFolder = 10;
-    repeated StaticPages StaticPages = 11;
-}
-
-message StaticPages {
-    string File = 1;
-    string To = 2;
-    bool IsTemplate = 3;
-}
-
-message Theme {
-    string Repository = 1;
-    string Type = 2;
-}
-
-message DataSource {
-    string Repository = 1;
-    string Type = 2;
-}
-
-message Upload {
-    string URL = 1;
-    string Username = 2;
-    string Password = 3;
-}
-
-message Response {
-    string Res = 1;
 }
