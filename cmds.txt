@@ -1,0 +1,23 @@
+Proto
+=====
+protoc --go_out=plugins=grpc:. *.proto
+
+dep
+===
+dep init
+dep ensure -update
+
+
+Docker
+======
+# docker volume create --name $(pwd)/artifacts
+
+docker build -t fetch-image .
+docker build -t generate-image .
+docker build -t web-image .
+
+docker run -it --rm -v $(pwd)/../artifacts:/artifacts --name fetch-service-1 fetch-image -p 50051:50051
+docker run -it --rm -v $(pwd)/../artifacts:/artifacts --name fetch-service-2 fetch-image -p 50052:50051
+docker run -it --rm -v $(pwd)/../artifacts:/artifacts --name generate-service generate-image -p 50053:50051
+docker run -it --rm -v $(pwd)/../artifacts:/artifacts --name web web-image -p 8080:50051
+docker run -it --rm -P -v $(pwd)/../artifacts:/artifacts --name builder web-image
