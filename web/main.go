@@ -60,6 +60,7 @@ func fetch(writer http.ResponseWriter, request *http.Request) {
 	downloader()
 	writer.Write([]byte("Resources downloaded."))
 }
+
 func generate(writer http.ResponseWriter, request *http.Request) {
 	builder.Lock.Lock()
 	defer builder.Lock.Unlock()

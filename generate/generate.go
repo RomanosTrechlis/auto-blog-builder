@@ -1,13 +1,14 @@
 package main
 
 import (
-	"golang.org/x/net/context"
-	"google.golang.org/grpc"
+	"fmt"
+	"log"
+	"net"
+
 	pb "github.com/RomanosTrechlis/auto-blog-builder/service"
 	"github.com/RomanosTrechlis/blog-generator/cli"
-	"fmt"
-	"net"
-	"log"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
 
