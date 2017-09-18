@@ -20,7 +20,7 @@ message GenerateRequest {
     Upload Upload = 14;
     string TempFolder = 9;
     string DestFolder = 10;
-    repeated StaticPages StaticPages = 11;ss
+    repeated StaticPages StaticPages = 11;
 }
 
 message StaticPages {
